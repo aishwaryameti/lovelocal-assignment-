@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class CountDigitOne {
+
+    public static int countDigitOne(int n) {
+        int count = 0;
+        for (long i = 1; i <= n; i *= 10) {
+            long divider = i * 10;
+            count += (n / divider) * i + Math.min(Math.max(n % divider - i + 1, 0), i);
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a non-negative integer (0 <= n <= 10^9): ");
+        int input = scanner.nextInt();
+
+        int totalCount = countDigitOne(input);
+        System.out.println("Total occurrences of digit 1 from 0 to " + input + ": " + totalCount);
+    }
+}
